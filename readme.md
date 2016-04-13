@@ -57,7 +57,7 @@ The `.yml` extension should be used throughout the code, not `.yaml`
 #### `./cli` is a query interface to the YAML data.
   1. run `./cli` to start the interactive REPL. Arbitrary Ruby can be run here, like in IRB
   2. type `help` to see a list of methods. When given a method name as an argument, `help` will show its source code. For example:  
-  ```ruby
+  ```txt
   >> help(:duplicates)
   def duplicates
     # returns Array(company objects) which have duplicate entries

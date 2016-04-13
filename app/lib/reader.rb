@@ -15,15 +15,18 @@ class Reader
       nil, nil, nil, nil
   end
   
-  def backup_applied
+# ==========
+# Commenting this out as it is pointless
+# ==========
+  # def backup_applied
     # Note that this will not work unless you call "migrate" in the ./job_tracker_cli/job_tracker_cli REPL
     # job_tracker_cli is a totally separate project that's not really integrated nor necessary to use
     # see http://github.com/maxpleaner/job_tracker_cli
-    applied.each do |name|
-      name = name.to_s.downcase.gsub(" ", "_")
-      `( echo "add_company('#{name}')"; echo "\n"; echo "exit" ) | #{ROOT_PATH}/lib/job_tracker_cli/job_tracker_cli `
-    end
-  end
+  #   applied.each do |name|
+  #     name = name.to_s.downcase.gsub(" ", "_")
+  #     `( echo "add_company('#{name}')"; echo "\n"; echo "exit" ) | #{ROOT_PATH}/lib/job_tracker_cli/job_tracker_cli `
+  #   end
+  # end
   
   def all_categories
     # returns Hash (key: name, val: attributes)
@@ -65,9 +68,7 @@ class Reader
   end
 
   def applied
-    # returns hash
-    # key: category
-    # val: Array(company objects)
+    # returns array of company names
     select { |company| company["applied"] || company[:applied] }
            .values
            .flatten
@@ -75,9 +76,7 @@ class Reader
   end
 
   def todos
-    # returns hash
-    # key: category
-    # val: Array(company objects)
+    # returns array of company names
     select { |company| company["todo"] || company[:todo] }
            .values
            .flatten
@@ -85,9 +84,7 @@ class Reader
   end
 
   def blank
-    # returns hash
-    # key: category
-    # val: Array(company objects)
+    # returns array of company names
     select { |company| company["desc"].blank? && company[:desc].blank? }
            .values
            .flatten

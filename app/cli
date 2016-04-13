@@ -42,7 +42,7 @@ ROOT_PATH = "."
 #---------------------------------------------------------
 # intance methods in RubyCliSkeleton and COMMANDS_CLASS are available in the cli
 class RubyCliSkeleton < COMMANDS_CLASS
-  # more commands are defined in lib/commands.rb
+  # more commands are defined in lib/reader.rb
   def no_help_methods
     # list of methods which are ignored when the "help" command lists all methods
     [:no_help_methods, :print_and_return]

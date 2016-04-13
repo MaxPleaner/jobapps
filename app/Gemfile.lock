@@ -18,6 +18,7 @@ GEM
     awesome_print (1.6.1)
     bond (0.5.1)
     builder (3.2.2)
+    byebug (8.2.4)
     coderay (1.0.9)
     colored (1.2)
     i18n (0.7.0)
@@ -60,6 +61,7 @@ DEPENDENCIES
   activerecord
   activesupport
   awesome_print
+  byebug
   colored
   method_source
   pry

@@ -1,5 +1,6 @@
 require 'yaml'
 require 'active_support/all'
+require 'pry'
 
 class Reader
 
@@ -55,21 +56,24 @@ class Reader
       companies.values.flatten
   end
 
-  def select(&blk)
+  def filter(&blk)
     # returns hash
     # key: category
     # val: Array(company objects)
-    companies.reduce({}) { |memo, (category, list)|
+    return companies if blk.nil?
+    companies.keys.reduce({}) { |memo, category|
+      list = companies[category]
       memo[category] = list.select { |compan|
         blk.call(compan)
       }
       memo
-    }
+    }.reject { |k,v| v.empty? }
   end
 
   def applied
     # returns array of company names
-    select { |company| company["applied"] || company[:applied] }
+    binding.pry
+    filter { |company| company["applied"] || company[:applied] }
            .values
            .flatten
            .map { |company| company["name"] || company[:name] }           
@@ -77,7 +81,7 @@ class Reader
 
   def todos
     # returns array of company names
-    select { |company| company["todo"] || company[:todo] }
+    filter { |company| company["todo"] || company[:todo] }
            .values
            .flatten
            .map { |company| company["name"] || company[:name] }
@@ -85,7 +89,7 @@ class Reader
 
   def blank
     # returns array of company names
-    select { |company| company["desc"].blank? && company[:desc].blank? }
+    filter { |company| company["desc"].blank? && company[:desc].blank? }
            .values
            .flatten
            .map { |company| company["name"] || company[:name] }

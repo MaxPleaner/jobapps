@@ -51,7 +51,8 @@ else
         var $el = $(elem);
         var name = $el.find(".startup-link").text();
         var desc = $el.find(".tagline").text();
-        $body.prepend("name: " + name + ",<br>" + "desc: " + desc + "<br><br>") 
+        var jobs = $el.find(".collapsed-title").text();
+        $body.prepend("name: " + name + ",<br>" + "desc: " + desc + "<br>" + "jobs: " + jobs + "<br><br>") 
       }
     );
   JS

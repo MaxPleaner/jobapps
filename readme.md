@@ -39,9 +39,11 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 
 #### Note
 
-The `.yml` extension should be used throughout the code, not `.yaml`
+**~** The `.yml` extension should be used throughout the code, not `.yaml`
 
-If some company/category yaml file gets changed when the `./cli` REPL is already running, `uncache` needs to be called so that the changes will be included.
+**~** If some company/category yaml file gets changed when the `./cli` REPL is already running, `uncache` needs to be called so that the changes will be included.
+
+**~** Make sure that every file in yml/companies has at least one company entry in it. 
 
 ----
 
@@ -74,10 +76,10 @@ If some company/category yaml file gets changed when the `./cli` REPL is already
   ```  
   3. Add query methods in [app/lib/reader.rb](app/lib/reader.rb). The following methods are implemented:
     - `help(method_name=nil)` prints all the available methods, and can display a method's source code if the method name is passed as a (symbol) argument.
-    - `select(&blk)` can be used to filter companies. Returns a hash where keys are category names and values are arrays of company objects.
+    - `filter(&blk)` can be used to filter companies. Returns a hash where keys are category names and values are arrays of company objects.
     For example:  
     ```ruby
-      select { |company| company["applied"] }
+      filter { |company| company["applied"] }
     ```
     - `uncache` will clear the in-memory companies data and prompt a fresh lookup from YML the next time a query is called.
     - `all_categories` will load the file at [yml/categories/categories.yml](yml/categories/categories.yml). This list includes all categories that are present on [this AngelList category directory](https://angel.co/markets). It returns a hash where keys are category names and values are attributes. The attributes includes are counts for the number of investors, followers, companies, and jobs

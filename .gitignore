@@ -3,7 +3,6 @@ db/*
 app/lib/job_tracker_cli/backup.yml
 app/lib/job_tracker_cli/db/*
 
-app/yml/categories/*
 app/yml/companies/*
 app/yml/notes/*
 

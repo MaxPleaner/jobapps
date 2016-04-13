@@ -82,7 +82,6 @@ class Reader
 
   def applied
     # returns array of company names
-    binding.pry
     filter { |company| company["applied"] || company[:applied] }
            .values
            .flatten

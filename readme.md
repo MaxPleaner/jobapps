@@ -7,8 +7,10 @@ It mainly involves writing to YAML files using a text editor.
 ## Install
 
 1. clone
-2. cd app
-3. bundle (tested with ruby 2.4)
+2. look in .gitignore and create the folders which aren't present in the Github repo 
+3. cd app
+4. bundle (tested with ruby 2.4)
+5. `./cli` or `./get_data`
 
 ## Usage
 
@@ -39,7 +41,9 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 
 The `.yml` extension should be used throughout the code, not `.yaml`
 
-#### `./scraper` uses Javascript to get data from AngelList
+Also, 
+
+#### `./get_data` uses Javascript to get data from AngelList
   
   1. open a search results page on AngelList jobs.
   2. Open the javascript debugger console and paste in the script shown in the terminal

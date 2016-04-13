@@ -22,3 +22,5 @@ gem "colored"
 gem "sqlite3"
 gem "activerecord"
 gem 'activesupport'
+
+gem "pry"

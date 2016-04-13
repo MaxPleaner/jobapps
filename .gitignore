@@ -1,4 +1,3 @@
-db/*
 .gd/*
 app/lib/job_tracker_cli/backup.yml
 app/lib/job_tracker_cli/db/*

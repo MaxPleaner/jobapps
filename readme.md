@@ -42,6 +42,7 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 The `.yml` extension should be used throughout the code, not `.yaml`
 
 If some company/category yaml file gets changed when the `./cli` REPL is already running, `uncache` needs to be called so that the changes will be included.
+
 ----
 
 ## Executables

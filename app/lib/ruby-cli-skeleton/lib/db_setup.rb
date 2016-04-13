@@ -23,7 +23,7 @@ class Migrations < ActiveRecord::Migration
   end
   def down
     puts "backing up database".red_on_black if File.file?(DATABASE_PATH)
-    loop { (`cp #{DATABASE_PATH} #{DATABASE_PATH}-#{SecureRandom.urlsafe_base64}.backup`; break) rescue next }
+    loop { (`cp #{DATABASE_PATH} #{DATABASE_PATH}-#{SecureRandom.urlsafe_base64}.backup`; break) rescue (puts "migration error"; next) }
     sleep 0.5
     drop_table :todos
     puts "dropped todos table"

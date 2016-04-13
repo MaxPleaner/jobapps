@@ -37,7 +37,7 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 - *:todo*, any truthy value signifies an interesting-sounding company
 - *:skip*, any truthy value signifies a skipped company
 
-#### Note
+#### Notes
 
 **~** The `.yml` extension should be used throughout the code, not `.yaml`
 

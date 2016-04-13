@@ -4,6 +4,9 @@ require 'active_support/all'
 class Reader
 
   def initialize(options={})
+    puts "#{"**".blue} #{"  Jobapps REPL  ".white_on_black} #{"** http://github.com/maxpleaner/jobapps".blue}"
+    puts "".blue
+    puts "#{"try entering".yellow} #{"help".green}"
   end
 
   def uncache
@@ -13,6 +16,9 @@ class Reader
   end
   
   def backup_applied
+    # Note that this will not work unless you call "migrate" in the ./job_tracker_cli/job_tracker_cli REPL
+    # job_tracker_cli is a totally separate project that's not really integrated nor necessary to use
+    # see http://github.com/maxpleaner/job_tracker_cli
     applied.each do |name|
       name = name.to_s.downcase.gsub(" ", "_")
       `( echo "add_company('#{name}')"; echo "\n"; echo "exit" ) | #{ROOT_PATH}/lib/job_tracker_cli/job_tracker_cli `
@@ -47,7 +53,9 @@ class Reader
   end
 
   def select(&blk)
-    # returns Array(company objects)
+    # returns hash
+    # key: category
+    # val: Array(company objects)
     companies.reduce({}) { |memo, (category, list)|
       memo[category] = list.select { |compan|
         blk.call(compan)
@@ -57,7 +65,9 @@ class Reader
   end
 
   def applied
-    # returns Array(company objects)
+    # returns hash
+    # key: category
+    # val: Array(company objects)
     select { |company| company["applied"] || company[:applied] }
            .values
            .flatten
@@ -65,7 +75,9 @@ class Reader
   end
 
   def todos
-    # returns Array(company objects)
+    # returns hash
+    # key: category
+    # val: Array(company objects)
     select { |company| company["todo"] || company[:todo] }
            .values
            .flatten
@@ -73,7 +85,9 @@ class Reader
   end
 
   def blank
-    # returns Array(company objects) which need their "desc" written
+    # returns hash
+    # key: category
+    # val: Array(company objects)
     select { |company| company["desc"].blank? && company[:desc].blank? }
            .values
            .flatten

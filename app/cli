@@ -32,9 +32,10 @@ require "awesome_print"
 # use lib/reader.rb as the source for the COMMANDS_CLASS constant
 COMMANDS_FILE = "./lib/reader.rb"
 require_relative COMMANDS_FILE
-# Set a variable equaling the class which is loaded from COMMANDS_FILE
+# Set a COMMANDS_CLASS to equal the class which is loaded from COMMANDS_FILE
 COMMANDS_CLASS = Reader
-ROOT_PATH = "/home/max/Documents/jobapps/app"
+# set ROOT_PATH to equal the directory containing this file
+ROOT_PATH = "."
 
 #---------------------------------------------------------
 # the CLI base

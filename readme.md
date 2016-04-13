@@ -72,4 +72,19 @@ If some company/category yaml file gets changed when the `./cli` REPL is already
   => :duplicates
 
   ```  
-  3. Add query methods in [app/lib/reader.rb](app/lib/reader.rb)
+  3. Add query methods in [app/lib/reader.rb](app/lib/reader.rb). The following methods are implemented:
+    - `help(method_name=nil)` prints all the available methods, and can display a method's source code if the method name is passed as a (symbol) argument.
+    - `select(&blk)` can be used to filter companies. Returns a hash where keys are category names and values are arrays of company objects.
+    For example:  
+    ```ruby
+      select { |company| company["applied"] }
+    ```
+    - `uncache` will clear the in-memory companies data and prompt a fresh lookup from YML the next time a query is called.
+    - `all_categories` will load the file at [yml/categories/categories.yml](yml/categories/categories.yml). This list includes all categories that are present on [this AngelList category directory](https://angel.co/markets). It returns a hash where keys are category names and values are attributes. The attributes includes are counts for the number of investors, followers, companies, and jobs
+    - `selected_categories` loads [yml/categories/selected_categories](yml/categories/selected_categories). It returns an array of category names.
+    - `companies` is used to load all companies. It returns a hash where keys are category name and values are arrays of category objects.
+    - `all_companies` returns an array of all company objects 
+    - `applied` returns an array of company names (which have a truthy `applied` value)
+    - `todos` returns an array of company names (which have a truthy `todo` value)
+    - `blank` returns an array of company names (which have a blank `desc` value)
+    - `duplicates` returns an array of company objects which have duplicate entries. For each duplicate `name`, the first matching object is included here. 

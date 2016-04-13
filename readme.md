@@ -41,6 +41,10 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 
 The `.yml` extension should be used throughout the code, not `.yaml`
 
+----
+
+## Executables
+
 #### `./get_data` uses Javascript to get data from AngelList
   
   1. open a search results page on AngelList jobs.

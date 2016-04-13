@@ -2,12 +2,22 @@ require 'yaml'
 require 'active_support/all'
 require 'pry'
 
-class Reader
+require_relative("./writer.rb")
 
+class Reader
+  include Writer
   def initialize(options={})
     puts "#{"**".blue} #{"  Jobapps REPL  ".white_on_black} #{"** http://github.com/maxpleaner/jobapps".blue}"
     puts "".blue
     puts "#{"try entering".yellow} #{"help".green}"
+  end
+
+  def write(name, content)
+    super(name, content) # from lib/writer.rb
+  end
+
+  def add_category(name)
+    super(name) # from lib/writer.rb
   end
 
   def uncache

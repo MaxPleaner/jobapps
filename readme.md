@@ -49,7 +49,7 @@ If some company/category yaml file gets changed when the `./cli` REPL is already
 
 #### `./get_data` uses Javascript to get data from AngelList
   
-  1. open a search results page on AngelList jobs.
+  1. open a job search results page on AngelList jobs. You can also use a 'startups' search result page but the script is a little different. In that case, use`./get_data companies` instead.
   2. Open the javascript debugger console and paste in the script shown in the terminal
   3. wait until the infinite scroll has fetched all the results then paste in the next command
   4. paste the next command

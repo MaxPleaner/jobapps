@@ -7,10 +7,9 @@ It mainly involves writing to YAML files using a text editor.
 ## Install
 
 1. clone
-2. look in .gitignore and create the folders which aren't present in the Github repo 
-3. cd app
-4. bundle (tested with ruby 2.4)
-5. `./cli` or `./get_data`
+2. cd app
+3. bundle (tested with ruby 2.4)
+4. `./cli` or `./get_data`
 
 ---
 
@@ -18,7 +17,7 @@ It mainly involves writing to YAML files using a text editor.
 
 This is built using [ruby-cli-skeleton](http://github.com/maxpleaner/ruby-cli-skeleton), which i made. See that readme for more info. In this repo, the `RubyCliSkeleton` class is defined in the [app/cli](app/cli) file.
 
-There is also a version of [job_tracker_cli](http://github.com/maxpleaner/job_tracker_cli) located in the [app/lib](app/lib) directory though it is pretty much made redundant by this project. 
+This serves the same purpose as [job_tracker_cli](http://github.com/maxpleaner/job_tracker_cli) which is made redundant by this project. 
 
 ---
 
@@ -34,9 +33,9 @@ There is also a version of [job_tracker_cli](http://github.com/maxpleaner/job_tr
 - music_services
 ```  
 
-For each of these names, a corresponding file can be created i.e. `app/yml/companies/music_services.yml`. This file contains a list of objects. Any key can be added to a company object and used for queries through the `cli` script.
+For each of these names, a corresponding companies file can be created i.e. `app/yml/companies/music_services.yml`. This file contains a list of objects. Any key can be added to a company object and used for queries through the `cli` script.
 
-A few keys are already used in query methods in [app/lib/reader.rb](app/lib/reader.rb):  
+A few keys are already used in query methods in [app/lib/reader.rb](app/lib/reader.rb) (and, by extension, [app/cli](app/cli)):
 
 **basic attributes**
 - *:name* (the name of the company),

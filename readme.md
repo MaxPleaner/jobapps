@@ -12,6 +12,16 @@ It mainly involves writing to YAML files using a text editor.
 4. bundle (tested with ruby 2.4)
 5. `./cli` or `./get_data`
 
+---
+
+## Relevant projects
+
+This is built using [ruby-cli-skeleton](http://github.com/maxpleaner/ruby-cli-skeleton), which i made. See that readme for more info. In this repo, the `RubyCliSkeleton` class is defined in the [app/cli](app/cli) file.
+
+There is also a version of [job_tracker_cli](http://github.com/maxpleaner/job_tracker_cli) located in the [app/lib](app/lib) directory though it is pretty much made redundant by this project. 
+
+---
+
 ## Usage
 
 #### Basic concepts

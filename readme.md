@@ -99,3 +99,11 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
     - `todos` returns an array of company names (which have a truthy `todo` value)
     - `blank` returns an array of company names (which have a blank `desc` value)
     - `duplicates` returns an array of company objects which have duplicate entries. For each duplicate `name`, the first matching object is included here. 
+
+    **_Update_**
+
+    I've been adding more methods to the cli.
+
+    - `write(name, content)` will write to the file at `yml/companies/#{name}.yml`. It will overwrite the file if it exists or create it otherwise. `content` is expected to be a ruby object. The method calls `YAML.dump` internally.
+    - `add_category(name)`  to add a category to the list at [yml/categories/selected_categories.yml](yml/categories/selected_categories.yml).
+    - `add_company(category, attributes_hash)` to add a company to the file at `yml/companies/#{category}.yml` (creating the file if necessary) 

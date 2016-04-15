@@ -5,6 +5,37 @@ require 'pry'
 require_relative("./writer.rb")
 require_relative("./selenium_runner.rb")
 
+class Company < Hash
+  # Syntactic Sugar
+  def initialize(hash)
+    hash.each { |k,v| self[k] = v }
+  end
+  def name
+    self["name"]
+  end
+  def name=(val)
+    self["name"] = val
+  end
+  def desc
+    self["desc"]
+  end
+  def desc=(val)
+    self["desc"] = val
+  end
+  def applied
+    self["applied"]
+  end
+  def applied=(val)
+    self['applied'] = val
+  end
+  def skip
+    self['skip']
+  end
+  def skip=(val)
+    self['skip'] = val
+  end
+end
+
 class Reader
   include Writer
   include SeleniumRunner
@@ -82,7 +113,7 @@ class Reader
   def all_companies
     # returns Array(company objects)
     @all_companies ||=\
-      companies.values.flatten
+      companies.values.flatten.map { |hash| Company.new(hash) }
   end
 
   def filter(&blk)
@@ -96,7 +127,7 @@ class Reader
         blk.call(compan)
       }
       memo
-    }.reject { |k,v| v.empty? }
+    }.reject { |k,v| v.empty? }.map { |hash| Company.new(hash) }
   end
 
   def applied

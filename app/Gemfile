@@ -22,3 +22,4 @@ gem "activerecord"
 gem 'activesupport'
 
 gem "pry"
+gem "pry-byebug"

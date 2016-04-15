@@ -104,7 +104,9 @@ class Reader
     # returns Hash (key: category, val: array of company objects)
     @companies ||= selected_categories.reduce({}) { |hash, category|
       (
-        hash[category] = YAML.load(File.read "#{ROOT_PATH}/yml/companies/#{category}.yml")
+        hash[category] = YAML.load(
+          File.read "#{ROOT_PATH}/yml/companies/#{category}.yml"
+        ).map { |company| Company.new(company) }
       ) rescue next hash
       next hash
     }
@@ -127,7 +129,7 @@ class Reader
         blk.call(compan)
       }
       memo
-    }.reject { |k,v| v.empty? }.map { |hash| Company.new(hash) }
+    }.reject { |k,v| v.empty? }
   end
 
   def applied

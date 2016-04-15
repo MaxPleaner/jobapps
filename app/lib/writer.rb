@@ -7,6 +7,9 @@ class Hash
 end
 
 module Writer
+  def delete_duplicates(category)
+    write(category, companies[category].reject { |c| (c[:name] || c["name"]).in?(duplicates) })
+  end
   def write(name, content)
     if content.is_a?(Array) && content[0].is_a?(Hash)
       content = content.map(&:stringify_keys)

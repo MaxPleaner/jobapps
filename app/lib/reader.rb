@@ -3,17 +3,36 @@ require 'active_support/all'
 require 'pry'
 
 require_relative("./writer.rb")
+require_relative("./selenium_runner.rb")
 
 class Reader
   include Writer
+  include SeleniumRunner
   def initialize(options={})
     puts "#{"**".blue} #{"  Jobapps REPL  ".white_on_black} #{"** http://github.com/maxpleaner/jobapps".blue}"
     puts "".blue
     puts "#{"try entering".yellow} #{"help".green}"
   end
 
+  def run_selenium
+    puts "companies page? empty newline means no"
+    companies_arg = gets.chomp
+    super(!companies_arg.blank?)
+  end
+
   def write(name, content)
     super(name, content) # from lib/writer.rb
+  end
+
+  def delete_duplicates(name)
+    puts "WARNING: this will delete duplicates from the name you have given"
+    puts "i.e. if you give a 'sf_ruby' argument, companies in that category will"
+    puts "be deleted if they are found elsewhere"
+    puts "newline to confirm, any text cancels"
+    input = gets.chomp
+    if input.blank?
+      super(name)
+    end
   end
 
   def add_category(name)

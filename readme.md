@@ -57,6 +57,7 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 **~** Every company needs to have a name attribute
 
 **~** All keys should be strings. To ensure all a yml file's keys are strings, run `delete_duplicates(category_name)` on the category, which will trigger a rewrite that stringifies all the keys. But make sure to delete any extant duplicate records first. 
+
 ----
 
 ## Executables

@@ -54,6 +54,7 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 
 **~** Make sure that every file in yml/companies has at least one company entry in it. 
 
+**~** Every company needs to have a name attribute
 ----
 
 ## Executables
@@ -107,3 +108,4 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
     - `write(name, content)` will write to the file at `yml/companies/#{name}.yml`. It will overwrite the file if it exists or create it otherwise. `content` is expected to be a ruby object. The method calls `YAML.dump` internally.
     - `add_category(name)`  to add a category to the list at [yml/categories/selected_categories.yml](yml/categories/selected_categories.yml).
     - `add_company(category, attributes_hash)` to add a company to the file at `yml/companies/#{category}.yml` (creating the file if necessary) 
+    - `delete_duplicates(category_name)` will delete any companies from the `yml/companies/#{category_name}.yml` file that are duplicates of entries in other files. 

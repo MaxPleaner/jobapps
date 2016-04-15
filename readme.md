@@ -55,11 +55,14 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
 **~** Make sure that every file in yml/companies has at least one company entry in it. 
 
 **~** Every company needs to have a name attribute
+
+**~** All keys should be strings. To ensure all a yml file's keys are strings, run `delete_duplicates(category_name)` on the category, which will trigger a rewrite that stringifies all the keys. But make sure to delete any extant duplicate records first. 
 ----
 
 ## Executables
 
 #### `./get_data` uses Javascript to get data from AngelList
+
   
   1. open a job search results page on AngelList jobs. You can also use a 'startups' search result page but the script is a little different. In that case, use`./get_data companies` instead.
   2. Open the javascript debugger console and paste in the script shown in the terminal
@@ -67,6 +70,15 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
   4. paste the next command
   5. scroll back to the top of the page and copy the newly added text (in a grey box)
   6. paste the text into a file in `app/yml/companies`. Make sure there is an entry in the [app/yml/categories/selected_categories.yml](app/yml/categories/selected_categories.yml) list with the same name as thie `app/yml/companies` file. The text will have to be formatted a little bit to be proper YAML.
+
+#### Selenium script
+
+  There is also a selenium script which automates these steps. Open `./cli` and call `run_selenium` or `run_selenium(true)` (use the argument for company listing pages as opposed to job listing pages). However, AngelList requires a login in order to see job listings, and the selenium script isn't set up to automate login yet.
+
+  There are a couple `pry` breakpoints in the selenium script where manual input is required:
+
+  1. At the first breakpoint, go to the Firefox window that selenium opened and login to AngelList. Then open the "jobs" search page and confiure your query (location, tags, etc). When finished, enter `continue` into the terminal
+  2. At the second breakpoint, copy the extracted data from the top of the page into a yml file (and format it to be syntactic yaml)
 
 #### `./cli` is a query interface to the YAML data.
   1. run `./cli` to start the interactive REPL. Arbitrary Ruby can be run here, like in IRB
@@ -109,3 +121,8 @@ A few keys are already used in query methods in [app/lib/reader.rb](app/lib/read
     - `add_category(name)`  to add a category to the list at [yml/categories/selected_categories.yml](yml/categories/selected_categories.yml).
     - `add_company(category, attributes_hash)` to add a company to the file at `yml/companies/#{category}.yml` (creating the file if necessary) 
     - `delete_duplicates(category_name)` will delete any companies from the `yml/companies/#{category_name}.yml` file that are duplicates of entries in other files. 
+    
+    **_Update2**
+
+    - companies are now returned as `Company` objects (a class which inherits from hash)
+    - The main point of this is to define methods for creatin attr accessors for `name`, `desc`, `applied`, and `skip` attributes 

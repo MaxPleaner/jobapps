@@ -1,6 +1,5 @@
 require 'yaml'
 require 'active_support/all'
-require 'pry'
 
 require_relative("./writer.rb")
 require_relative("./selenium_runner.rb")
@@ -55,6 +54,12 @@ class Reader
     super(name, content) # from lib/writer.rb
   end
 
+  def find(company_name)
+    all_companies.find { |company|
+      company.name.eql?(company_name)
+    }
+  end
+
   def delete_duplicates(name)
     puts "WARNING: this will delete duplicates from the name you have given"
     puts "i.e. if you give a 'sf_ruby' argument, companies in that category will"
@@ -76,19 +81,6 @@ class Reader
       nil, nil, nil, nil
   end
   
-# ==========
-# Commenting this out as it is pointless
-# ==========
-  # def backup_applied
-    # Note that this will not work unless you call "migrate" in the ./job_tracker_cli/job_tracker_cli REPL
-    # job_tracker_cli is a totally separate project that's not really integrated nor necessary to use
-    # see http://github.com/maxpleaner/job_tracker_cli
-  #   applied.each do |name|
-  #     name = name.to_s.downcase.gsub(" ", "_")
-  #     `( echo "add_company('#{name}')"; echo "\n"; echo "exit" ) | #{ROOT_PATH}/lib/job_tracker_cli/job_tracker_cli `
-  #   end
-  # end
-  
   def all_categories
     # returns Hash (key: name, val: attributes)
     @all_categories ||= YAML.load(File.read "#{ROOT_PATH}/yml/categories/categories.yml")
@@ -98,7 +90,6 @@ class Reader
     # returns Array(category names)
     @selected_categories ||= YAML.load(File.read("#{ROOT_PATH}/yml/categories/selected_categories.yml"))
   end
-
 
   def companies
     # returns Hash (key: category, val: array of company objects)
@@ -135,6 +126,14 @@ class Reader
   def applied
     # returns array of company names
     filter { |company| company["applied"] || company[:applied] }
+           .values
+           .flatten
+           .map { |company| company["name"] || company[:name] }           
+  end
+
+  def skipped
+    # returns array of company names
+    filter { |company| company["skip"] || company[:skip] }
            .values
            .flatten
            .map { |company| company["name"] || company[:name] }           

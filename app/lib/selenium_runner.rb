@@ -1,5 +1,5 @@
 require 'selenium-webdriver'
-require 'pry'
+require 'byebug'
 
 module SeleniumRunner
   def new_driver
@@ -8,7 +8,7 @@ module SeleniumRunner
   def run_selenium(companies=false)
     driver = self.new_driver()
     # login and navigate to the page manually
-    binding.pry
+    byebug
     companies_argument_given = !!companies
     script = case companies_argument_given
     when true
@@ -60,7 +60,7 @@ module SeleniumRunner
     end
     driver.execute_script(secondary_script)
     # find the content at the top of the page
-    binding.pry
+    byebug
     driver.quit
   end
 end

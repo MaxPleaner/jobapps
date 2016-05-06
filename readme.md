@@ -2,6 +2,14 @@ A job application tracker system.
 
 It mainly involves writing to YAML files using a text editor.
 
+## Update
+
+I've replaced a large part of this project with a web interface. See [jobapps-web](http://github.com/maxpleaner/jobapps-web). 
+
+However the web interface uses the same formatted YAML files as this project.
+
+In short, this program can be used to create lists of companies in YAML files which are then imported into the jobapps-web program. 
+
 ---
 
 ## Install
@@ -12,6 +20,7 @@ It mainly involves writing to YAML files using a text editor.
 4. `./cli` or `./get_data`
 
 ---
+
 
 ## Relevant projects
 

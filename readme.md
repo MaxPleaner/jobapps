@@ -10,6 +10,10 @@ However the web interface uses the same formatted YAML files as this project.
 
 In short, this program can be used to create lists of companies in YAML files which are then imported into the jobapps-web program. 
 
+## Update 2
+
+I wrote _yet another_ iteration of this project, which of course is the best. It's at https://github.com/MaxPleaner/job_search_companion
+
 ---
 
 ## Install
